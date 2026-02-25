@@ -129,7 +129,7 @@ class OptimizedSmsReaderWorker @AssistedInject constructor(
      */
     private fun calculateOptimalParallelism(totalMessages: Int, availableCores: Int): Int {
         // Always use sequential processing to ensure correct balance calculations
-        return 1
+        return minOf(availableCores, 8)
     }
 
     data class ProcessingStats(
